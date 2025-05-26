@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++17 -Wall -I/home/linuxbrew/.linuxbrew/opt/nlohmann-json/inclu
 
 TARGET = myapp
 
-SRC = main.cc
+SRC = main.cc task.h task.cc
 
 all: $(TARGET)
 

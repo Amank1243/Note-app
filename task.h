@@ -7,6 +7,9 @@
 
 class Task {
   public:
+  Task() {}
+    Task(std::string task) : task_(task) {}
+
     void addTask(const Task& task);
     void updateTask(const Task& task);
     void deleteTask(const Task& task);
@@ -16,7 +19,7 @@ class Task {
   private:
     std::vector<Task> tasks_;
     int id_;
-    std::string description_;
+    std::string task_;
     bool todo_ = true;
     bool inprogress_ = false;
     bool done_ = false;
