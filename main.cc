@@ -1,39 +1,27 @@
 #include <iostream>
+#include <string>
 #include <fstream>
-#include <nlohmann/json.hpp>
-#include "task.h"
-
-using json = nlohmann::json;
 
 int main(int argc, char* argv[]) {
-    std::cout << "Welcome to your task manager!\n";
-    std::cout << "===============================\n";
-    std::cout << "Type any of the following to do an action: \n";
-    std::cout << "Type 'exit' to leave the program\n";
-    std::cout << "What do you want to do?\n";
 
-    std::string input;
-    std::cin >> input;
+    // creat e filesystem
+    std::fstream file;
 
-    Task t;
+    // turn c string into a string
 
-    if (input == "exit" || input == "Exit") {
-        return 0;
-    } else {
-        if (input == "add" || "Add") {
-            std::cout << "What task do you want to add? \n";
-            std::cin >> input;
-            t.addTask(input);
-        }
+    std::string arg1 = argv[1];
+
+    // Instructions in the README.md file will explain how to use the program
+
+    // If commandline argument EQUALS "add", or "update", or "delete", run something
+    if (arg1 == "add") {
+        file.open("tasks.json");
+        file << argv[1];
+        std::cout << "adding\n";
+    } else if (arg1 == "update") {
+
+    } else if (arg1 == "delete") {
+
     }
 
-    /*
-    json j;
-
-    
-    std::ofstream file("tasks.json");
-    file << j.dump(2);
-    file.close();
-    */
-    // write data to json file
 }
