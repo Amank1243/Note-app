@@ -5,16 +5,6 @@
 #include <cstdlib>
 
 
-// Struct for holding data members related to task, and functions
-struct Task {
-    std::string description;
-    int id = 1;
-    std::string taskToJson() {
-        return "  {\n id} ";
-    
-    }
-};
-
 
 int main(int argc, char* argv[]) {
 
@@ -24,9 +14,11 @@ int main(int argc, char* argv[]) {
     std::string task = argv[2];
 
     // MOVED variables outside of IF add scope to make global variables
-    std::fstream file{"tasks.json", std::ios::in | std::ios::out | std::ios::app};
+    std::ofstream Createfile{"tasks.json", std::ios::app};
+    Createfile << "[\n \n \n ]";
+    Createfile.close();
+    
     std::string line;
-    int Id = 1;
 
     Task t;
 
@@ -34,7 +26,17 @@ int main(int argc, char* argv[]) {
 
     // IF commandline argument EQUALS "add", or "update", or "delete", run something
     if (action == "add") {
-
+        std::fstream file{"tasks.json", std::ios::in | std::ios::out};
+        // IF file is open, store task in it, else throw an error
+        if (file.is_open()) {
+            // Reset the file cursor position, otherwise the while loop would start at the very end
+            file.seekp(1, std::ios::beg);
+            file  << t.addToJson(task);
+            // file << '\n';
+        } else {
+            std::cerr << "Error: File failed to open";
+        }
+        /*
         // IF file is open, store task in it, else throw an error
         if (file.is_open()) {
             file  << task;
@@ -44,9 +46,7 @@ int main(int argc, char* argv[]) {
         }
 
         // GET task ID
-       
-        // Reset the file cursor position, otherwise the while loop would start at the very end
-        file.seekg(0, std::ios::beg);
+    
 
         // WHILE going through every line in the json file, increment a counter. IF task equals line, display the increment counter(ID)
         while (std::getline(file, line)) {
@@ -55,14 +55,13 @@ int main(int argc, char* argv[]) {
                 return 0;
             } else if (line == task) {
                 break;
-            }
-            Id++;
+            }        
         }
 
         
         // OUTPUT "Task added successfully " along with an ID number for the task
-        std::cout << "Task added successfully (ID: " << Id << ")\n";
-
+        std::cout << "Task added successfully ";
+        */
     } else if (action == "update") {
         // INIT command line argument to be a number, only for the action "UPDATE"
 

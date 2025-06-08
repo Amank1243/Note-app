@@ -1,6 +1,6 @@
 CXX = g++
 
-CXXFLAGS = -std=c++17 -Wall -I/home/linuxbrew/.linuxbrew/opt/nlohmann-json/include
+CXXFLAGS = -std=c++17 -Wall
 
 TARGET = myapp
 
